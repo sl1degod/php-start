@@ -1,4 +1,6 @@
 <?php
+header('Content-Type: application/json; charset=utf-8');  
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $errors = array();
 
@@ -12,9 +14,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         header('Location: index.php');
         exit();
     } else {
-        foreach ($errors as $error) {
-            echo $error;
-        }
+
+        // Отдавать ответ через перебор не есть правильно, будет отправлена только первая ошибка
+
+        // foreach ($errors as $error) {
+        //     echo $error;
+        // }
+
+        echo json_encode(['message' => $errors]);
     }
 }
 
